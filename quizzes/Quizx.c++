@@ -4,7 +4,6 @@ NI: Quiz #1
 
 /* -----------------------------------------------------------------------
  1. What is the output of the following?
-    (4 pts)
 */
 
 #include <iostream> // cout, endl
