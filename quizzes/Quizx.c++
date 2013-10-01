@@ -1,36 +1,55 @@
 /*
-NI: Quiz #1
+NI: Quiz #2
 */
 
 /* -----------------------------------------------------------------------
- 1. What is the output of the following?
+ 1. For the '<<' operator that is defined on 'int', what is the
+    l-value / r-value nature of the return, the left argument, and
+    the right argument?
+*/
+
+/* -----------------------------------------------------------------------
+ 2. For the '>>=' operator that is defined on 'int', what is the
+    l-value / r-value nature of the return, the left argument, and
+    the right argument?
+*/
+
+/* -----------------------------------------------------------------------
+ 3. For the '<<' operator that is defined on 'ostream', what is the
+    l-value / r-value nature of the return, the left argument, and
+    the right argument?
+*/
+
+/* -----------------------------------------------------------------------
+ 4. What is the output of the following?
 */
 
 #include <iostream> // cout, endl
 
-using namespace std;
-
-void f (bool b) {
-    cout << "f1 ";
-    if (b)
-        throw exception();
-    cout << "f2 ";}
-
 int main () {
-    try {
-        cout << "m1 ";
-        f(false);
-        cout << "m2 ";}
-    catch (exception& e) {
-        cout << "m3 ";}
-    cout << "m4 " << endl;
+    using namespace std;
+    cout << boolalpha;   // bool outputs as true or false
 
-    try {
-        cout << "m1 ";
-        f(true);
-        cout << "m2 ";}
-    catch (exception& e) {
-        cout << "m3 ";}
-    cout << "m4" << endl;
+    {
+    int   i  = 2;
+    int*  p  = &i;
+    int** pp = &p;
+    int** qq = pp;
+    ++**qq;
+    cout << i          << " ";
+    ++qq;
+    cout << (pp == &p) << endl;
+    }
+
+    {
+    int    i  = 2;
+    int*   p  = &i;
+    int**  pp = &p;
+    int**& qq = pp;
+    ++**qq;
+    cout << i          << " ";
+    ++qq;
+    cout << (pp == &p) << endl;
+    }
 
     return 0;}
