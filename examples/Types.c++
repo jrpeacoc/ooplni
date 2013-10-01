@@ -13,6 +13,12 @@ struct A {
     double d;
     T      x;};
 
+template <typename T>
+struct B {
+    int    i;
+    T      x;
+    double d;};
+
 union U {
     int  i;
     long j;};
@@ -103,30 +109,61 @@ int main () {
     assert(out.str() == "1.18973e+4932");
     }
 
-    char a1[] = "abc";
-    assert(sizeof(a1) == 4 * sizeof(char));
+    {
+    char a[] = "abc";
+    assert(sizeof(a) == 4 * sizeof(char));
+    }
 
-    int a2[] = {2, 3, 4};
-    assert(sizeof(a2) == 3 * sizeof(int));
+    {
+    int a[] = {2, 3, 4};
+    assert(sizeof(a) == 3 * sizeof(int));
+    }
 
-    A<int> x1 = {2, 3.45, 6};
+    {
+    A<int> x = {2, 3.45, 6};
     assert(sizeof(A<int>) == 24);
-    assert(sizeof(x1)     == 24);
+    assert(sizeof(x)      == 24);
+    }
 
-    A<double> x2 = {2, 3.45, 6.78};
+    {
+    B<int> x = {2, 3, 4.56};
+    assert(sizeof(B<int>) == 16);
+    assert(sizeof(x)      == 16);
+    }
+
+    {
+    A<double> x = {2, 3.45, 6.78};
     assert(sizeof(A<double>) == 24);
-    assert(sizeof(x2)        == 24);
+    assert(sizeof(x)         == 24);
+    }
 
-    A< A<int> > x3 = {2, 3.45, {2, 3.45, 6}};
+    {
+    B<double> x = {2, 3.45, 6.78};
+    assert(sizeof(B<double>) == 24);
+    assert(sizeof(x)         == 24);
+    }
+
+    {
+    A< A<int> > x = {2, 3.45, {2, 3.45, 6}};
     assert(sizeof(A< A<int> >) == 40);
-    assert(sizeof(x3)          == 40);
+    assert(sizeof(x)           == 40);
+    }
 
+    {
+    B< B<int> > x = {2, {2, 3, 4.56}, 3.45};
+    assert(sizeof(B< B<int> >) == 32);
+    assert(sizeof(x)           == 32);
+    }
+
+    {
     U u1 = {2};
     U u2 = {2L};
     assert(sizeof(U)  == 8);
     assert(sizeof(u1) == 8);
     assert(sizeof(u2) == 8);
+    }
 
+    {
     Color c1 = red;
     Color c2 = green;
     Color c3 = blue;
@@ -134,6 +171,7 @@ int main () {
     assert(sizeof(c1)    == 4);
     assert(sizeof(c2)    == 4);
     assert(sizeof(c3)    == 4);
+    }
 
     cout << "Done." << endl;
     return 0;}
