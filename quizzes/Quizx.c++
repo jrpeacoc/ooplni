@@ -1,44 +1,44 @@
 /*
-NI: Quiz #3
+NI: Quiz #5
 */
 
 /* -----------------------------------------------------------------------
- 1. What are the five iterator categories?
-    List them in order of strength, from weakest to strongest.
+1. What is the output of the following program?
 */
 
-/* -----------------------------------------------------------------------
- 2. What is the weakest iterator that the algorithm std::equal() needs?
-*/
+#include <iostream> // cout, endl
+#include <vector>   // vector
 
-/* -----------------------------------------------------------------------
- 3. What is the output of the following?
-*/
+using namespace std;
 
-#include <iostream> // boolalpha, cout, endl
-
-int*& f (int*& r) {
-    ++*r;
-    return r;}
+struct A {
+    A             ()         {cout << "A() ";}                  // default constructor
+    A             (int)      {cout << "A(int) ";}               // int constructor
+    A             (const A&) {cout << "A(A) ";}                 // copy constructor
+    ~A            ()         {cout << "~A() ";}                 // destructor
+    A& operator = (const A&) {cout << "=(A) "; return *this;}}; // copy assignment operator
 
 int main () {
-    using namespace std;
-    cout << boolalpha;   // bool outputs as true or false
+    {
+    A a[5] = {2, 3, 4};
+    cout << endl;
+    }
+    cout << endl << endl;
 
     {
-    int  i = 2;
-    int* p = &i;
-    int* q = f(p);
-    cout << i          << " ";
-    cout << (&q == &p) << endl;
+    A* a = new A[5];
+    cout << endl;
+    fill(a, a + 3, 2);
+    cout << endl;
+    delete [] a;
+    cout << endl;
     }
+    cout << endl;
 
     {
-    int   i = 2;
-    int*  p = &i;
-    int*& q = f(p);
-    cout << i          << " ";
-    cout << (&q == &p) << endl;
+    vector<A> x(5, 2);
+    cout << endl;
     }
+    cout << endl;
 
     return 0;}
