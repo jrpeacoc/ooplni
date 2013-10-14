@@ -36,7 +36,7 @@ Collatz.zip: makefile                                    \
              SphereCollatz.c++                           \
              TestCollatz.c++ TestCollatz.out
 	zip -r Collatz.zip                                 \
-	       makefile html/                              \
+	       html/ makefile                              \
            Collatz.c++ Collatz.h Collatz.log           \
            RunCollatz.c++ RunCollatz.in RunCollatz.out \
            SphereCollatz.c++                           \

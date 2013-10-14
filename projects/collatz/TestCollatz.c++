@@ -51,9 +51,9 @@ TEST(Collatz, read) {
     int i;
     int j;
     const bool b = collatz_read(r, i, j);
-    ASSERT_TRUE(b == true);
-    ASSERT_TRUE(i ==    1);
-    ASSERT_TRUE(j ==   10);}
+    ASSERT_TRUE(b);
+    ASSERT_EQ(1, i);
+    ASSERT_EQ(10, j);}
 
 // ----
 // eval
@@ -61,19 +61,19 @@ TEST(Collatz, read) {
 
 TEST(Collatz, eval_1) {
     const int v = collatz_eval(1, 10);
-    ASSERT_TRUE(v == 20);}
+    ASSERT_EQ(20, v);}
 
 TEST(Collatz, eval_2) {
     const int v = collatz_eval(100, 200);
-    ASSERT_TRUE(v == 125);}
+    ASSERT_EQ(125, v);}
 
 TEST(Collatz, eval_3) {
     const int v = collatz_eval(201, 210);
-    ASSERT_TRUE(v == 89);}
+    ASSERT_EQ(89, v);}
 
 TEST(Collatz, eval_4) {
     const int v = collatz_eval(900, 1000);
-    ASSERT_TRUE(v == 174);}
+    ASSERT_EQ(174, v);}
 
 // -----
 // print
@@ -82,7 +82,7 @@ TEST(Collatz, eval_4) {
 TEST(Collatz, print) {
     std::ostringstream w;
     collatz_print(w, 1, 10, 20);
-    ASSERT_TRUE(w.str() == "1 10 20\n");}
+    ASSERT_EQ("1 10 20\n", w.str());}
 
 // -----
 // solve
@@ -92,4 +92,4 @@ TEST(Collatz, solve) {
     std::istringstream r("1 10\n100 200\n201 210\n900 1000\n");
     std::ostringstream w;
     collatz_solve(r, w);
-    ASSERT_TRUE(w.str() == "1 10 20\n100 200 125\n201 210 89\n900 1000 174\n");}
+    ASSERT_EQ("1 10 20\n100 200 125\n201 210 89\n900 1000 174\n", w.str());}
